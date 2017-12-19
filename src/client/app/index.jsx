@@ -32,24 +32,24 @@ export class App extends React.Component {
 
     render() {
         return(
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-md-12 text-center mb-5">
-                    <div class="card text-center mb-5" id="changing">
-                        <img class="card-img-top" src="holder.js/100px180/" alt="" />
-                        <div class="card-body">
-                            <h4 class="card-title">{this.state.name}</h4>
-                            <img src={this.state.imgsrc} />
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class ='row'>
+        <div class="container mt-5">
+            <div class ='row'>
                 <div class="col-md-12 text-center mb-5">
                     <button class="btn btn-dark"onClick={this.clicker1}>Search</button>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center mb-5">
+                    <div class="card text-center mb-5" id="changing">
+                        <img class="card-img-top" src="holder.js/100px180/" alt="" />
+                        <div class="card-body">
+                                <h4 class="card-title">{this.state.name}</h4>
+                                <img src={this.state.imgsrc} />
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
         );
     }
 }
