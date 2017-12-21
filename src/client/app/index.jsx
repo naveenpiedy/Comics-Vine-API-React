@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 //alert(nameValue);
 
 var theUrl = "https://comicvine.gamespot.com/api/characters/?api_key=a251cc89a1ad9254fe0a1b7d11ef5a5c848577e7&filter=name:kate_bishop&format=JSON"
+//var theUrlXML = "https://comicvine.gamespot.com/api/characters/?api_key=a251cc89a1ad9254fe0a1b7d11ef5a5c848577e7&filter=name:kate_bishop"
+
 function httpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -17,6 +19,7 @@ export class App extends React.Component {
     constructor(props) {
         super(props);
         var json_obj = JSON.parse(httpGet(theUrl));
+        //var xml_obj = httpGet(theUrlXML)
         this.state = { name:[json_obj.results[0].name], imgsrc : [json_obj.results[0].image.medium_url], totaldata : json_obj, index:0, expansion: false};
         this.clicker1 = this.clicker1.bind(this);
         this.expand = this.expand.bind(this);
@@ -53,8 +56,14 @@ export class App extends React.Component {
                 <div class="card text-center mb-5" onClick={()=>this.expand(index)}>
                 <img class="card-img-top" src="holder.js/100px180/" alt="" />
                     <div class="card-body">
-                        <h4 class="card-title">{name1234}</h4>
-                        <img src={imgr} />
+                    <div class='row'>
+                        <div class="col-2">
+                            <img src={imgr} class="img-thumbnail img-fluid" />
+                        </div>
+                        <div class="col-7">
+                                <h4 class="text-left">{name1234}</h4>
+                        </div>
+                    </div>
                     </div>
                 </div>
                 )
@@ -62,17 +71,46 @@ export class App extends React.Component {
         }else {
             var name1234 = this.state.totaldata.results[this.state.index].name;
             var imgr = this.state.totaldata.results[this.state.index].image.medium_url
+            var res = this.state.totaldata.results[this.state.index].description.replace(/<noscript>/g, " ");
+            var final = res.replace(/<\/noscript>/g, " ");
             var name23 = 
-                <div class="card text-center mb-5">
-                <img class="card-img-top" src="holder.js/100px180/" alt="" />
+            <div>
+            <div class="card text-left">
+                    <img class="card-img-top" src="holder.js/100px180/" alt="" />
                     <div class="card-body">
-                        <h4 class="card-title">{name1234}</h4>
-                        <img src={imgr} />
-                        <p>{this.state.totaldata.results[this.state.index].aliases}</p>
-                        <br />
-                        <p>{this.state.totaldata.results[this.state.index].deck}</p>
-                    </div>
-                </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <img src={imgr} class="img-fluid" />
+                            </div>
+                            <div class="col-7">
+                                <h4 class="text-center">{name1234}</h4>
+                                <br />
+                                <p>
+                                    <span class="text-muted">Real Name: </span>{this.state.totaldata.results[this.state.index].real_name}</p>
+                                <b4 />
+                                <p>
+                                    <span class="text-muted">Aliases: </span>{this.state.totaldata.results[this.state.index].aliases}</p>
+                                <b4 />
+                                <p><span class="text-muted">Description: </span>{this.state.totaldata.results[this.state.index].deck}</p>
+                                <b4 />
+                                <p><span class="text-muted">Origin: </span></p>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="card text-left mt-5">
+                            <img class="card-img-top" src="holder.js/100px180/" alt="" />
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div dangerouslySetInnerHTML={{ __html: final} } />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+                
+            
             
         }
         return(
