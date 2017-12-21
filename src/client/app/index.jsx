@@ -19,6 +19,7 @@ export class App extends React.Component {
         var json_obj = JSON.parse(httpGet(theUrl));
         this.state = { name:[json_obj.results[0].name], imgsrc : [json_obj.results[0].image.medium_url]};
         this.clicker1 = this.clicker1.bind(this);
+        this.expand = this.expand.bind(this);
     } 
 
     clicker1(){
@@ -36,14 +37,18 @@ export class App extends React.Component {
         this.setState({name:nameq, imgsrc : imgsrcq})
         
     }
-    
+
+    expand(){
+        alert("This is working");
+    }
+   
 
     render() {
         const op2 = this.state.imgsrc;
-        var name23 = this.state.name.map(function(name1234, index){
+        var name23 = this.state.name.map((name1234, index)=>{
             const imgr= op2[index];
             return (
-            <div class="card text-center mb-5">
+            <div class="card text-center mb-5" onClick={this.expand}>
             <img class="card-img-top" src="holder.js/100px180/" alt="" />
                 <div class="card-body">
                     <h4 class="card-title">{name1234}</h4>
@@ -56,12 +61,11 @@ export class App extends React.Component {
         <div class="container mt-5">
             <div class ='row'>
                 <div class="col-md-12 text-center mb-5">
-                    <button class="btn btn-dark"onClick={this.clicker1}>Search</button>
+                    <button class="btn btn-dark" onClick={this.clicker1}>Search</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 text-center mb-5">
-                    
                         {name23}
                 </div>
             </div>
