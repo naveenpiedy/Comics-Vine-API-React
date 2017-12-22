@@ -89,11 +89,14 @@ export class App extends React.Component {
                                     <span class="text-muted">Real Name: </span>{this.state.totaldata.results[this.state.index].real_name}</p>
                                 <b4 />
                                 <p>
+                                    <span class="text-muted">Speices: </span>{this.state.totaldata.results[this.state.index].origin.name}</p>
+                                <b4 />
+                                <p>
                                     <span class="text-muted">Aliases: </span>{this.state.totaldata.results[this.state.index].aliases}</p>
                                 <b4 />
                                 <p><span class="text-muted">Description: </span>{this.state.totaldata.results[this.state.index].deck}</p>
                                 <b4 />
-                                <p><span class="text-muted">Origin: </span></p>
+                                <p><span class="text-muted">Publisher: </span>{this.state.totaldata.results[this.state.index].publisher.name}</p>
                             </div>
                         </div>
                         </div>
